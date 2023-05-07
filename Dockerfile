@@ -14,7 +14,7 @@ RUN apt-get update \
 ## ========================================
 FROM base as local
 
-COPY ./hello_world .
+COPY ./src .
 
 RUN pip install --no-cache-dir --requirement requirements.txt
 
@@ -26,5 +26,5 @@ FROM base as test
 
 COPY . .
 
-RUN pip install --no-cache-dir --requirement hello_world/requirements.txt \
+RUN pip install --no-cache-dir --requirement src/requirements.txt \
   && pip install --no-cache-dir --requirement tests/requirements.txt

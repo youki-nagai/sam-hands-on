@@ -1,10 +1,8 @@
 name: lint
-
 on:
   pull_request:
     paths:
-      - 'Dockerfile'
-
+      - "Dockerfile"
 jobs:
   lint:
     runs-on: ubuntu-latest

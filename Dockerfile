@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.9-slim as base
 
 WORKDIR /workdir
 
@@ -9,8 +9,22 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+## ========================================
+## local
+## ========================================
+FROM base as local
+
 COPY ./hello_world .
 
 RUN pip install --no-cache-dir --requirement requirements.txt
 
 CMD uvicorn asgi_app:app
+## ========================================
+## test
+## ========================================
+FROM base as test
+
+COPY . .
+
+RUN pip install --no-cache-dir --requirement hello_world/requirements.txt \
+  && pip install --no-cache-dir --requirement tests/requirements.txt

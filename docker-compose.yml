@@ -1,6 +1,9 @@
 services:
   uvicorn:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: local
     command: uvicorn asgi_app:app --host 0.0.0.0 --reload
     env_file:
       - .env
@@ -10,3 +13,14 @@ services:
     tty: true
     volumes:
       - ./hello_world:/workdir
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workdir

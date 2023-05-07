@@ -1,5 +1,12 @@
 services:
-  sam:
+  uvicorn:
     build: .
+    command: uvicorn asgi_app:app --host 0.0.0.0 --reload
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    stdin_open: true
+    tty: true
     volumes:
-      - .:/workdir
+      - ./hello_world:/workdir

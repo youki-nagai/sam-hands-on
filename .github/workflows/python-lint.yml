@@ -6,7 +6,7 @@ on:
 env:
   PYTHON_VERSION: 3.9
 jobs:
-  lint:
+  python-lint:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:

@@ -33,6 +33,16 @@ Resources:
           Properties:
             Path: /hello2
             Method: get
+        Articles:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /v1/articles
+            Method: get
+        Users:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /v1/users
+            Method: get
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
     Properties:

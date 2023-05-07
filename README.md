@@ -38,6 +38,16 @@ cat response.json
 sam deploy --guided
 ```
 
+## docker で lambda 立ち上げずに app 開発
+
+こちらは api gateway がなくても動く
+
+```sh
+docker-compose build
+
+docker-compose up
+```
+
 ---
 
 ## ========================

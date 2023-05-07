@@ -3,6 +3,9 @@
 ## how to use
 
 ```sh
+## aws-cliのinstall
+brew install awscli
+
 ## samのinstall
 brew install aws/tap/aws-sam-cli
 
@@ -34,8 +37,15 @@ cat response.json
 ## aws への deploy
 
 ```sh
-## samのdeploy
-sam deploy --guided
+## samのdeploy (初回)
+## samconfig.toml fileが作られる
+sam deploy --guided --profile <your pc aws profile name>
+
+## samのdeploy (２回目以降)
+sam deploy --profile <your pc aws profile name>
+
+## stack削除（aws cli使用)
+aws cloudformation delete-stack --stack-name sam-hands-on --region ap-northeast-1
 ```
 
 ## docker で lambda 立ち上げずに app 開発

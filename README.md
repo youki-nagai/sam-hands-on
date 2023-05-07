@@ -1,4 +1,4 @@
-# sam-hands-on
+# sam_hands_on
 
 ## how to use
 
@@ -40,10 +40,10 @@ sam deploy --guided --profile <your pc aws profile name>
 sam deploy --profile <your pc aws profile name>
 
 ## stack削除（aws cli使用)
-sam delete --stack-name sam-hands-on
+sam delete --stack-name sam_hands_on
 
 ## 別の記事にあった消し方
-## aws cloudformation delete-stack --stack-name sam-hands-on --region ap-northeast-1
+## aws cloudformation delete-stack --stack-name sam_hands_on --region ap-northeast-1
 ```
 
 ## docker で lambda 立ち上げずに app 開発
@@ -55,7 +55,7 @@ test 用の container も作成しているので便利だと思う
 ## .envの準備
 touch .env
 echo "integration_testに使用" >> .env
-echo "AWS_SAM_STACK_NAME=sam-hands-on" >> .env
+echo "AWS_SAM_STACK_NAME=sam_hands_on" >> .env
 
 docker-compose build
 
@@ -140,7 +140,7 @@ You can find your API Gateway Endpoint URL in the output values displayed after 
 Build your application with the `sam build --use-container` command.
 
 ```bash
-sam-hands-on$ sam build --use-container
+sam_hands_on$ sam build --use-container
 ```
 
 The SAM CLI installs dependencies defined in `src/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
@@ -150,14 +150,14 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-sam-hands-on$ sam local invoke HelloWorldFunction --event events/event.json
+sam_hands_on$ sam local invoke HelloWorldFunction --event events/event.json
 ```
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
 
 ```bash
-sam-hands-on$ sam local start-api
-sam-hands-on$ curl http://localhost:3000/
+sam_hands_on$ sam local start-api
+sam_hands_on$ curl http://localhost:3000/
 ```
 
 The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
@@ -182,7 +182,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-sam-hands-on$ sam logs -n HelloWorldFunction --stack-name sam-hands-on --tail
+sam_hands_on$ sam logs -n HelloWorldFunction --stack-name sam_hands_on --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
@@ -192,12 +192,12 @@ You can find more information and examples about filtering Lambda function logs 
 Tests are defined in the `tests` folder in this project. Use PIP to install the test dependencies and run tests.
 
 ```bash
-sam-hands-on$ pip install -r tests/requirements.txt --user
+sam_hands_on$ pip install -r tests/requirements.txt --user
 # unit test
-sam-hands-on$ python -m pytest tests/unit -v
+sam_hands_on$ python -m pytest tests/unit -v
 # integration test, requiring deploying the stack first.
 # Create the env variable AWS_SAM_STACK_NAME with the name of the stack we are testing
-sam-hands-on$ AWS_SAM_STACK_NAME=<stack-name> python -m pytest tests/integration -v
+sam_hands_on$ AWS_SAM_STACK_NAME=<stack-name> python -m pytest tests/integration -v
 ```
 
 ## Cleanup
@@ -205,7 +205,7 @@ sam-hands-on$ AWS_SAM_STACK_NAME=<stack-name> python -m pytest tests/integration
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-sam delete --stack-name sam-hands-on
+sam delete --stack-name sam_hands_on
 ```
 
 ## Resources

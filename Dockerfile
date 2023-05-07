@@ -20,22 +20,11 @@ RUN pip install --no-cache-dir --requirement requirements.txt
 
 CMD uvicorn asgi_app:app
 ## ========================================
-## unit test
+## test
 ## ========================================
-FROM base as unit_test
+FROM base as test
 
-COPY ./tests .
+COPY . .
 
-RUN pip install --no-cache-dir --requirement requirements.txt
-
-CMD python -m pytest unit -v
-## ========================================
-## integration test
-## ========================================
-FROM base as integration_test
-
-COPY ./tests .
-
-RUN pip install --no-cache-dir --requirement requirements.txt
-
-CMD AWS_SAM_STACK_NAME=sam-hands-on python -m pytest integration -v
+RUN pip install --no-cache-dir --requirement hello_world/requirements.txt \
+  && pip install --no-cache-dir --requirement tests/requirements.txt

@@ -2,7 +2,7 @@ name: Python Lint
 on:
   pull_request:
     paths:
-      - "*.py"
+      - "**.py"
 env:
   PYTHON_VERSION: 3.9
 jobs:

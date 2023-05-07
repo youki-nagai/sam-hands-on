@@ -7,7 +7,8 @@ RUN apt-get update \
   curl=7.* \
   build-essential=12.* \
   && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && find / -type d -name __pycache__ -prune -exec rm -rf {} \;
 
 ## ========================================
 ## local
@@ -18,7 +19,7 @@ COPY ./src .
 
 RUN pip install --no-cache-dir --requirement requirements.txt
 
-CMD uvicorn asgi_app:app
+CMD ["uvicorn", "asgi_app:app"]
 ## ========================================
 ## test
 ## ========================================

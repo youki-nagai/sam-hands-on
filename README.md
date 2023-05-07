@@ -49,11 +49,29 @@ sam delete --stack-name sam-hands-on
 ## docker で lambda 立ち上げずに app 開発
 
 こちらは api gateway がなくても動く
+test 用の container も作成しているので便利だと思う
 
 ```sh
+## .envの準備
+touch .env
+echo "integration_testに使用" >> .env
+echo "AWS_SAM_STACK_NAME=sam-hands-on" >> .env
+
 docker-compose build
 
 docker-compose up
+```
+
+## docker 使ってテストを実施
+
+ちなみにテストコードは修正していないので通りません :bow:
+
+```sh
+## unit test
+docker-compose exec test python -m pytest tests/unit -v
+
+## integration test
+docker-compose exec test python -m pytest tests/integration -v
 ```
 
 ---

@@ -1,6 +1,9 @@
 services:
   uvicorn:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: local
     command: uvicorn asgi_app:app --host 0.0.0.0 --reload
     env_file:
       - .env
@@ -10,3 +13,27 @@ services:
     tty: true
     volumes:
       - ./hello_world:/workdir
+  unit_test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: unit_test
+    command: python -m pytest unit -v
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./tests:/workdir
+  integration_test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: integration_test
+    command: AWS_SAM_STACK_NAME=sam-hands-on python -m pytest integration -v
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./tests:/workdir

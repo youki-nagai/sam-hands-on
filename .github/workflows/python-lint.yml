@@ -1,6 +1,6 @@
 name: Python Lint
 on:
-  push:
+  pull_request:
     paths:
       - "*.py"
 env:

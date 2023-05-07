@@ -11,7 +11,7 @@ RUN apt-get update \
   && find / -type d -name __pycache__ -prune -exec rm -rf {} \;
 
 ## ========================================
-## local (development)
+## local
 ## ========================================
 FROM base as local
 

@@ -3,8 +3,11 @@
 ## how to use
 
 ```sh
-## aws-cliのinstall
+## aws-cliのinstall(まだ入れてなければ)
 brew install awscli
+
+## awsのprofile(まだ定義していなければ)
+aws configure --profile <your pc aws profile name>
 
 ## samのinstall
 brew install aws/tap/aws-sam-cli
@@ -24,14 +27,6 @@ sam local start-api
 
 ## curlで確認
 curl http://127.0.0.1:3000/hello
-
-## endpoint経由で実行
-## terminalでlog監視が始まる
-sam local start-lambda
-
-## 上記を実行（aws cli使用)
-aws lambda invoke --function-name "HelloWorldFunction" --endpoint-url "http://127.0.0.1:3001" --payload file://events/event.json --cli-binary-format raw-in-base64-out response.json
-cat response.json
 ```
 
 ## aws への deploy
@@ -45,7 +40,10 @@ sam deploy --guided --profile <your pc aws profile name>
 sam deploy --profile <your pc aws profile name>
 
 ## stack削除（aws cli使用)
-aws cloudformation delete-stack --stack-name sam-hands-on --region ap-northeast-1
+sam delete --stack-name sam-hands-on
+
+## 別の記事にあった消し方
+## aws cloudformation delete-stack --stack-name sam-hands-on --region ap-northeast-1
 ```
 
 ## docker で lambda 立ち上げずに app 開発

@@ -18,7 +18,10 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: "pip"
       - name: Install dependencies
-        run: pip install mypy black pyright
+        run: |
+          pip install --requirement src/requirements.txt
+          pip install --requirement tests/requirements.txt
+          pip install mypy black pyright
       - name: Run mypy
         run: mypy . --ignore-missing-imports
       - name: Run pyright

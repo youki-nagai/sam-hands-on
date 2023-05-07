@@ -40,7 +40,7 @@ sam deploy --guided --profile <your pc aws profile name>
 sam deploy --profile <your pc aws profile name>
 
 ## stack削除（aws cli使用)
-delete --stack-name sam-hands-on
+sam delete --stack-name sam-hands-on
 
 ## 別の記事にあった消し方
 ## aws cloudformation delete-stack --stack-name sam-hands-on --region ap-northeast-1

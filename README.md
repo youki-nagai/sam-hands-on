@@ -9,11 +9,8 @@ brew install aws/tap/aws-sam-cli
 ## samから新規プロジェクト作成
 sam init
 
-## samのbuild
-sam build
-
-## samのdeploy
-sam deploy --guided
+## samのbuild (docker desctopが必要)
+sam build --use-container
 
 ## local実行
 sam local invoke HelloWorldFunction
@@ -32,6 +29,13 @@ sam local start-lambda
 ## 上記を実行（aws cli使用)
 aws lambda invoke --function-name "HelloWorldFunction" --endpoint-url "http://127.0.0.1:3001" --payload file://events/event.json --cli-binary-format raw-in-base64-out response.json
 cat response.json
+```
+
+## aws への deploy
+
+```sh
+## samのdeploy
+sam deploy --guided
 ```
 
 ---

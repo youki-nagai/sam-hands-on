@@ -1,5 +1,49 @@
 # sam-hands-on
 
+## how to use
+
+```sh
+## samのinstall
+brew install aws/tap/aws-sam-cli
+
+## samから新規プロジェクト作成
+sam init
+
+## samのbuild
+sam build
+
+## samのdeploy
+sam deploy --guided
+
+## local実行
+sam local invoke HelloWorldFunction
+
+## localでapi gateway立てる
+## terminalでlog監視が始まる
+sam local start-api
+
+## curlで確認
+curl http://127.0.0.1:3000/hello
+
+## endpoint経由で実行
+## terminalでlog監視が始まる
+sam local start-lambda
+
+## 上記を実行（aws cli使用)
+aws lambda invoke --function-name "HelloWorldFunction" --endpoint-url "http://127.0.0.1:3001" --payload file://events/event.json --cli-binary-format raw-in-base64-out response.json
+cat response.json
+```
+
+---
+
+## ========================
+
+## 以下は init 時の default
+
+## ========================
+
+---
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - hello_world - Code for the application's Lambda function.

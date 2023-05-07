@@ -1,11 +1,16 @@
 FROM python:3.9-slim
 
-WORKDIR /app
+WORKDIR /workdir
 
-# Install git and other dependencies
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends git && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  curl=7.* \
+  build-essential=12.* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir awscli aws-sam-cli
+COPY ./hello_world .
+
+RUN pip install --no-cache-dir --requirement requirements.txt
+
+CMD uvicorn asgi_app:app
